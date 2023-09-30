@@ -27,4 +27,4 @@ jobs:
       - name: test
         run: ./mvnw test
       - name: package
-        run: ./mvnw package
+        run: ./mvnw package -Dmaven.test.skip
