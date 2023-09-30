@@ -22,3 +22,13 @@ mvn archetype:generate -DgroupId=dev.cmartin -DartifactId=learn-spring-cloud -Da
 mvn archetype:generate -DgroupId=dev.cmartin -DartifactId=microservice-one -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 mkdir -p src/{main,test}/{java,resources} src/main/java/com/cmartin/learn
 ```
+
+## Useful commands
+
+Dependency list
+
+    ./mvnw dependency:list -DincludeGroupIds=org.springframework
+
+Dependency updates
+
+    ./mvnw versions:display-dependency-updates
