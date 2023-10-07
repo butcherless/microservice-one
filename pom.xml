@@ -8,11 +8,12 @@
         <version>3.1.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+    <description>Micro service One WebApp</description>
+    <name>microservice-one</name>
     <groupId>dev.cmartin</groupId>
     <artifactId>microservice-one</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>microservice-one</name>
-    <description>Micro service One WebApp</description>
 
     <properties>
         <java.version>20</java.version>
