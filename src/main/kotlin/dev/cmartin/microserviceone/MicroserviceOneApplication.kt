@@ -10,5 +10,5 @@ class MicroserviceOneApplication
  * Application entry point
  */
 fun main(args: Array<String>) {
-	runApplication<MicroserviceOneApplication>(*args)
+    runApplication<MicroserviceOneApplication>(*args)
 }
