@@ -20,11 +20,9 @@ jobs:
           distribution: 'zulu'
           java-version: '21'
           cache: 'maven'
-      - name: check versions
-        run: ./mvnw -v
       - name: compile
-        run: ./mvnw compile
+        run: ./mvnw -B -V compile
       - name: test
-        run: ./mvnw test
+        run: ./mvnw -B test
       - name: package
-        run: ./mvnw package -Dmaven.test.skip
+        run: ./mvnw -B package -Dmaven.test.skip
