@@ -25,4 +25,6 @@ jobs:
       - name: test
         run: ./mvnw -B test
       - name: integration-test
-        run: ./mvnw -B integration-test -Dtests.skip
+        run: ./mvnw -B integration-test -Dunit.test.skip
+      - name: package
+        run: ./mvnw package -Dunit.test.skip

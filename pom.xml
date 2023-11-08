@@ -18,7 +18,7 @@
     <properties>
         <java.version>20</java.version>
         <kotlin.version>1.9.20</kotlin.version>
-        <tests.skip>false</tests.skip>
+        <unit.test.skip>false</unit.test.skip>
     </properties>
 
     <dependencies>
@@ -96,15 +96,14 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.1</version>
                 <configuration>
-                <skipTests>${tests.skip}</skipTests>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-failsafe-plugin</artifactId>
-            <version>3.2.2</version>
-        </plugin>
-    </plugins>
-</build>
-
-        </project>
+                    <skipTests>${unit.test.skip}</skipTests>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>3.2.2</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>
