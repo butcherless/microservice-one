@@ -20,6 +20,12 @@ jobs:
           distribution: 'zulu'
           java-version: '21'
           cache: 'maven'
+      - name: Cache Maven dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
       - name: compile
         run: ./mvnw -B -V compile
       - name: test
