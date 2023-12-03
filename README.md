@@ -7,8 +7,8 @@
 # Proof of concept and research with colleagues and friends.
 
 - Java 21
-- Spring Boot 3
-- Kotlin
+- Spring Boot 3.2.x
+- Kotlin 1.9.x
 
 ## New project basic structure
 
@@ -32,3 +32,7 @@ Dependency list
 Dependency updates
 
     ./mvnw versions:display-dependency-updates
+
+## HTTP client commands
+
+    http -v :8081/ms-one/countries
