@@ -6,3 +6,9 @@ logging:
     root: info
     org.springframework.boot: info
     dev.cmartin.microserviceone: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: [ health,loggers,env ]
