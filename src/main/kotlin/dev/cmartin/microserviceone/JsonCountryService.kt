@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentMap
 class JsonCountryService(private val countryMap: ConcurrentMap<String, Country>) : CountryService {
 
     override fun findAll(): Flux<Country> {
-        logger.debug("retrieving all countries: ${countryMap.size}")
+        logger.debug("retrieving all countries. size: ${countryMap.size}")
 
         return Flux.fromIterable(readJsonFile(jsonFilePath))
     }

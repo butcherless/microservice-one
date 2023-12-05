@@ -15,7 +15,7 @@ import reactor.kotlin.core.publisher.toFlux
 @RequestMapping("ms-one")
 class CountryController(private val countryService: CountryService) {
 
-    @GetMapping(countries)
+    @GetMapping(countries, "$countries/")
     fun getAllCountries(): Flux<Country> {
         logger.debug("retrieving all countries")
         return this.countryService.findAll().toFlux().sort(codeComparator)
