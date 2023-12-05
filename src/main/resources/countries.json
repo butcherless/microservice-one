@@ -6,5 +6,37 @@
   {
     "code": "pt",
     "name": "Portugal"
+  },
+  {
+    "code": "it",
+    "name": "Italy"
+  },
+  {
+    "code": "fr",
+    "name": "France"
+  },
+  {
+    "code": "de",
+    "name": "Germany"
+  },
+  {
+    "code": "uk",
+    "name": "United Kingdom"
+  },
+  {
+    "code": "us",
+    "name": "United States"
+  },
+  {
+    "code": "ca",
+    "name": "Canada"
+  },
+  {
+    "code": "br",
+    "name": "Brasil"
+  },
+  {
+    "code": "pe",
+    "name": "Perú"
   }
 ]

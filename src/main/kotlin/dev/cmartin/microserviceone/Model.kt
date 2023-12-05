@@ -7,5 +7,5 @@ object Model {
     @JvmInline
     value class Name(val value: String)
 
-    data class Country(val code: Code, val name: Name)
+    data class Country(val code: String, val name: String)
 }
