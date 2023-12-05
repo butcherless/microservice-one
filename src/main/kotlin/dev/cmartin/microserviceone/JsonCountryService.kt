@@ -23,6 +23,11 @@ class JsonCountryService(private val countryMap: ConcurrentMap<String, Country>)
         this.countryMap[code]
             .toMono()
 
+    override fun findByName(name: String): Mono<Country> =
+        this.countryMap.entries
+            .find { it.value.name == name }
+            ?.value.toMono()
+
 
     companion object {
         val logger: Logger = LoggerFactory.getLogger(JsonCountryService::class.java)

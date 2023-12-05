@@ -4,10 +4,7 @@ import dev.cmartin.microserviceone.Model.Country
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.kotlin.core.publisher.toFlux
 
@@ -15,27 +12,41 @@ import reactor.kotlin.core.publisher.toFlux
 @RequestMapping("ms-one")
 class CountryController(private val countryService: CountryService) {
 
-    @GetMapping(countries, "$countries/")
-    fun getAllCountries(): Flux<Country> {
+    @GetMapping("$countries/")
+    fun getAll(): Flux<Country> {
         logger.debug("retrieving all countries")
         return this.countryService.findAll().toFlux().sort(codeComparator)
     }
 
     @GetMapping("$countries/{code}")
-    fun getCountryByCode(@PathVariable code: String): ResponseEntity<Country> {
+    fun getByCode(@PathVariable code: String): ResponseEntity<Country> {
         logger.debug("retrieving country by code: $code")
 
         val country = this.countryService
             .findByCode(code)
             .block()
 
-        return when (country) {
-            null -> ResponseEntity.notFound()
+        return toOkOrNotFound(country)
+
+    }
+
+    @GetMapping(countries)
+    fun getByName(@RequestParam name: String): ResponseEntity<Country> {
+        logger.debug("retrieving country by name: $name")
+        val country = this.countryService.findByName(name).block()
+
+        return toOkOrNotFound(country)
+    }
+
+    private fun toOkOrNotFound(country: Country?) =
+        when (country) {
+            null -> ResponseEntity
+                .notFound()
                 .build()
 
             else -> ResponseEntity.ok(country)
         }
-    }
+
 
     companion object {
         val logger: Logger = LoggerFactory.getLogger(CountryController::class.java)
