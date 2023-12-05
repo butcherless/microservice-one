@@ -13,7 +13,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: [ health,loggers,env ]
+        include: [ health,loggers,env,mappings ]
 
 service:
   countries:

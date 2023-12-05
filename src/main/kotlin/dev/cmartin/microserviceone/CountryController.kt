@@ -49,14 +49,12 @@ class CountryController(private val countryService: CountryService) {
             .findAll(SortableProperties.CODE)
     }
 
-
     private fun toOkOrNotFound(country: Country?) =
         country?.let {
             ResponseEntity.ok(country)
         } ?: ResponseEntity
             .notFound()
             .build()
-
 
     companion object {
         val logger: Logger = LoggerFactory.getLogger(CountryController::class.java)
