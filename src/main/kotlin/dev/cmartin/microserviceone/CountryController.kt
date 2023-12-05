@@ -15,7 +15,11 @@ class CountryController(private val countryService: CountryService) {
     @GetMapping("$countries/")
     fun getAll(): Flux<Country> {
         logger.debug("retrieving all countries")
-        return this.countryService.findAll().toFlux().sort(codeComparator)
+
+        return this.countryService
+            .findAll()
+            .toFlux()
+            .sort(codeComparator)
     }
 
     @GetMapping("$countries/{code}")
@@ -27,26 +31,25 @@ class CountryController(private val countryService: CountryService) {
             .block()
 
         return toOkOrNotFound(country)
-
     }
 
     @GetMapping(countries)
     fun getByName(@RequestParam name: String): ResponseEntity<Country> {
         logger.debug("retrieving country by name: $name")
-        val country = this.countryService.findByName(name).block()
+        val country = this.countryService
+            .findByName(name)
+            .block()
 
         return toOkOrNotFound(country)
     }
 
     private fun toOkOrNotFound(country: Country?) =
-        when (country) {
-            null -> ResponseEntity
-                .notFound()
-                .build()
-
-            else -> ResponseEntity.ok(country)
-        }
-
+        country?.let {
+            ResponseEntity.ok(country)
+        } ?: ResponseEntity
+            .notFound()
+            .build()
+    
 
     companion object {
         val logger: Logger = LoggerFactory.getLogger(CountryController::class.java)
