@@ -7,11 +7,17 @@ import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("ms-one")
 class CountryController(private val countryService: CountryService) {
 
+    /**
+     * Retrieves all countries by name.
+     *
+     * @return a Flux of [Country] representing all countries.
+     */
     @GetMapping("$countries/")
     fun getAll(): Flux<Country> {
         logger.debug("retrieving all countries by name")
@@ -21,24 +27,22 @@ class CountryController(private val countryService: CountryService) {
     }
 
     @GetMapping("$countries/{code}")
-    fun getByCode(@PathVariable code: String): ResponseEntity<Country> {
+    fun getByCode(@PathVariable code: String): Mono<ResponseEntity<Country>> {
         logger.debug("retrieving country by code: $code")
 
-        val country = this.countryService
+        return this.countryService
             .findByCode(code)
-            .block()
-
-        return toOkOrNotFound(country)
+            .map { ResponseEntity.ok(it) }
+            .defaultIfEmpty(ResponseEntity.notFound().build())
     }
 
     @GetMapping(countries)
-    fun getByName(@RequestParam name: String): ResponseEntity<Country> {
+    fun getByName(@RequestParam name: String): Mono<ResponseEntity<Country>> {
         logger.debug("retrieving country by name: $name")
-        val country = this.countryService
+        return this.countryService
             .findByName(name)
-            .block()
-
-        return toOkOrNotFound(country)
+            .map { ResponseEntity.ok(it) }
+            .defaultIfEmpty(ResponseEntity.notFound().build())
     }
 
     @GetMapping("$countries/sortedByCode")
@@ -48,13 +52,6 @@ class CountryController(private val countryService: CountryService) {
         return this.countryService
             .findAll(SortableProperties.CODE)
     }
-
-    private fun toOkOrNotFound(country: Country?) =
-        country?.let {
-            ResponseEntity.ok(country)
-        } ?: ResponseEntity
-            .notFound()
-            .build()
 
     companion object {
         val logger: Logger = LoggerFactory.getLogger(CountryController::class.java)
