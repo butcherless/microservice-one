@@ -1,8 +1,12 @@
 package dev.cmartin.microserviceone
 
-import dev.cmartin.microserviceone.CountryService.Companion.SortableProperties
 import dev.cmartin.microserviceone.Model.Country
 import dev.cmartin.microserviceone.Model.ErrorResponse
+import dev.cmartin.microserviceone.TestData.countries
+import dev.cmartin.microserviceone.TestData.france
+import dev.cmartin.microserviceone.TestData.sortByCode
+import dev.cmartin.microserviceone.TestData.sortByName
+import dev.cmartin.microserviceone.TestData.spain
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
@@ -130,11 +134,6 @@ class CountryControllerTest {
     companion object {
         const val BASE_PATH = "/ms-one/countries"
         const val MISSING_CODE = "missing-code"
-        val spain = Country("es", "Spain")
-        val france = Country("fr", "France")
-        val countries: List<Country> = listOf(france, spain)
-        val sortByName = SortableProperties.NAME
-        val sortByCode = SortableProperties.CODE
     }
 
 }
