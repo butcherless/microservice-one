@@ -132,6 +132,11 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <excludes>
+                        <exclude>dev/cmartin/microserviceone/MicroserviceOneApplication*.*</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
         </plugins>
     </build>
