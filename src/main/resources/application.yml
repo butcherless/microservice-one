@@ -1,7 +1,7 @@
 server:
   port: 8081
   servlet:
-    context-path: "/ms-one"
+    context-path: /ms-one
 
 logging:
   level:
@@ -20,6 +20,8 @@ service:
     file: "countries.json"
 
 spring:
+  application:
+    name: "ms-one"
   devtools:
     restart:
       enabled: true
