@@ -41,7 +41,7 @@ class JsonCountryService(private val countryMap: ConcurrentMap<String, Country>)
     companion object {
         private val logger: Logger = LoggerFactory.getLogger(JsonCountryService::class.java)
 
-        val codeComparator = compareBy(Country::code)
-        val nameComparator = compareBy(Country::name)
+        private val codeComparator = compareBy(Country::code)
+        private val nameComparator = compareBy(Country::name)
     }
 }

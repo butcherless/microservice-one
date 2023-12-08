@@ -73,7 +73,7 @@ class CountryController(private val countryService: CountryService) {
     }
 
     companion object {
-        val logger: Logger = LoggerFactory.getLogger(CountryController::class.java)
+        private val logger: Logger = LoggerFactory.getLogger(CountryController::class.java)
 
         private const val GET_BY_CODE = "get country by code"
         private const val GET_BY_NAME = "get country by name"
