@@ -1,0 +1,23 @@
+### Get all countries, default sorting, default limit
+GET http://localhost:8081/ms-one/countries
+Accept: application/json
+
+### Get country by code
+GET http://localhost:8081/ms-one/countries/es
+Accept: application/json
+
+### Get country by name
+GET http://localhost:8081/ms-one/countries?name=Portugal
+Accept: application/json
+
+### Get all countries, sorted by code
+GET http://localhost:8081/ms-one/countries?sortedBy=code
+Accept: application/json
+
+### Get missing country by code
+GET http://localhost:8081/ms-one/countries/mc
+Accept: application/json
+
+### Get missing country by name
+GET http://localhost:8081/ms-one/countries?name=MissingCountry
+Accept: application/json
