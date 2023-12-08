@@ -15,7 +15,7 @@
 Check Java and Maven versions:
 
     mvn -v
-    
+
 ```bash
 mkdir my-multi-module-project
 mvn archetype:generate -DgroupId=dev.cmartin -DartifactId=learn-spring-cloud -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
@@ -33,6 +33,11 @@ Dependency updates
 
     ./mvnw versions:display-dependency-updates
 
-## HTTP client commands
+## HTTP client commands [`httpie`]
 
-    http -v :8081/ms-one/countries
+| Command                                        | Description                                           |
+|------------------------------------------------|-------------------------------------------------------|
+| `http -v ':8081/ms-one/countries'`               | Retrieve all countries sorted by name (default limit) |
+| `http -v ':8081/ms-one/countries?sortedBy=code'` | Retrieve all countries sorted by code (default limit) |
+| `http -v ':8081/ms-one/countries/es'`            | Retrieve a country by its code                        |
+| `http -v ':8081/ms-one/countries?name=Portugal'` | Retrieve a country by its name                        |
