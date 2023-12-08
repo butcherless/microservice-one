@@ -16,12 +16,12 @@ class CountryController(private val countryService: CountryService) {
 
     @GetMapping("", "/")
     fun getCountries(
-        @RequestParam(defaultValue = "name") orderBy: String,
+        @RequestParam(defaultValue = "name") sortedBy: String,
         @RequestParam(defaultValue = "") name: String
     ): Flux<Country> =
         when {
             name.isNotEmpty() -> getByName(name)
-            else -> getAllSorted(orderBy)
+            else -> getAllSorted(sortedBy)
         }
 
     private fun getByName(name: String): Flux<Country> =
@@ -32,9 +32,9 @@ class CountryController(private val countryService: CountryService) {
                 .also { logger.debug("$GET_BY_NAME: $name") }
         )
 
-    private fun getAllSorted(orderBy: String): Flux<Country> =
-        this.countryService.findAll(resolveSortableProperty(orderBy))
-            .also { logger.debug("$GET_ORDER_BY: $orderBy") }
+    private fun getAllSorted(sortedBy: String): Flux<Country> =
+        this.countryService.findAll(resolveSortableProperty(sortedBy))
+            .also { logger.debug("$GET_SORTED_BY: $sortedBy") }
 
 
     @GetMapping("/{code}")
@@ -52,13 +52,13 @@ class CountryController(private val countryService: CountryService) {
 
         private const val GET_BY_CODE = "get country by code"
         private const val GET_BY_NAME = "get country by name"
-        private const val GET_ORDER_BY = "get countries order by"
+        private const val GET_SORTED_BY = "get countries sorted by"
 
         private fun Mono<Country>.handleMissingCountryError(identifier: String) =
             this.switchIfEmpty(Mono.error(CountryNotFoundException("$identifier not found")))
 
-        private fun resolveSortableProperty(orderBy: String): SortableProperties =
-            when (orderBy.uppercase()) {
+        private fun resolveSortableProperty(sortedBy: String): SortableProperties =
+            when (sortedBy.uppercase()) {
                 SortableProperties.CODE.name -> SortableProperties.CODE
                 else -> SortableProperties.NAME
             }
