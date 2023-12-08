@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <description>Micro service One WebApp</description>
+    <description>Micro service one webApp</description>
     <name>microservice-one</name>
     <groupId>dev.cmartin</groupId>
     <artifactId>microservice-one</artifactId>
