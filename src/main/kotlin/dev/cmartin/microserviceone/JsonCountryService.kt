@@ -33,10 +33,11 @@ class JsonCountryService(private val countryMap: ConcurrentMap<String, Country>)
             .toMono()
 
     override fun findByName(name: String): Mono<Country> =
-        this.countryMap
-            .values
-            .find { it.name == name }?.toMono()
-            ?: Mono.empty()
+        Mono.justOrEmpty(
+            this.countryMap
+                .values
+                .find { it.name == name }
+        )
 
 
     companion object {
