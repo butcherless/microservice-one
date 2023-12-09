@@ -2,6 +2,8 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "automerge": true,
   "automergeType": "pr",
+  "timezone": "Europe/Madrid",
+  "schedule": "after 5pm every day",
   "extends": [
     "config:base"
   ]

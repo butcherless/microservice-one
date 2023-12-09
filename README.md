@@ -8,7 +8,7 @@
 
 Goals:
 
-- Service behind a _Gateway_
+- Country Service behind a _Gateway_
 - Tinker with _Spring Cloud Gateway_
 
 Tech stack:
@@ -47,9 +47,9 @@ Dependency updates
 
 ## HTTP client commands [`httpie`]
 
-| Command                                          | Description                                           |
-|--------------------------------------------------|-------------------------------------------------------|
-| `http -v ':8081/ms-one/countries'`               | Retrieve all countries sorted by name (default limit) |
-| `http -v ':8081/ms-one/countries?sortedBy=code'` | Retrieve all countries sorted by code (default limit) |
-| `http -v ':8081/ms-one/countries/es'`            | Retrieve a country by its code                        |
-| `http -v ':8081/ms-one/countries?name=Portugal'` | Retrieve a country by its name                        |
+| Command                                          | Description                                                     |
+|--------------------------------------------------|-----------------------------------------------------------------|
+| `http -v ':8081/ms-one/countries'`               | Retrieve all countries sorted by name (default limit)           |
+| `http -v ':8081/ms-one/countries?sortedBy=code'` | Retrieve all countries sorted by tow-digit code (default limit) |
+| `http -v ':8081/ms-one/countries/es'`            | Retrieve a country by its two-digit code                        |
+| `http -v ':8081/ms-one/countries?name=Portugal'` | Retrieve a country by its name                                  |
