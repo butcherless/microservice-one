@@ -14,13 +14,11 @@ import java.util.concurrent.ConcurrentMap
 class JsonCountryService(private val countryMap: ConcurrentMap<String, Country>) : CountryService {
 
     override fun findAll(sortByProperty: SortableProperties, limit: Int): Flux<Country> {
-        logger.debug("retrieving all countries. size: ${countryMap.size}")
-
         val countries = Flux.fromIterable(
             countryMap
                 .values
                 .take(limit)
-        )
+        ).also { logger.debug("retrieving all countries. size: ${countryMap.size}") }
 
         return when (sortByProperty) {
             SortableProperties.CODE -> countries.sort(codeComparator)
