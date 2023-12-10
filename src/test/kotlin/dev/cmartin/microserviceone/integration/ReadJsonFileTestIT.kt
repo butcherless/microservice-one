@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 
 class ReadJsonFileTestIT {
 
-    val path = "test-countries.json"
+    private val path = "test-countries.json"
 
     private fun readJsonFile(): Map<String, String> {
         val countries: List<Country> =

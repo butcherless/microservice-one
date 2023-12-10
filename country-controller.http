@@ -34,7 +34,7 @@ Accept: application/json
     client.assert(response.status === 404, "Wrong response status");
 %}
 
-### Get country by code
+### Bad Request for invalid country by code
 GET http://localhost:8081/ms-one/countries/xyz
 Accept: application/json
 
