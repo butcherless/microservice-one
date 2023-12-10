@@ -34,3 +34,7 @@ jobs:
         run: ./mvnw -B integration-test -Dunit.test.skip
       - name: package
         run: ./mvnw package -Dunit.test.skip
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
