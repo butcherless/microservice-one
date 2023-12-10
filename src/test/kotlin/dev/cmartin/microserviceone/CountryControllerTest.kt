@@ -133,7 +133,7 @@ class CountryControllerTest {
 
     companion object {
         const val BASE_PATH = "/ms-one/countries"
-        const val MISSING_CODE = "missing-code"
+        const val MISSING_CODE = "ZZ"
     }
 
 }

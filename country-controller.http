@@ -2,6 +2,10 @@
 GET http://localhost:8081/ms-one/countries
 Accept: application/json
 
+> {%
+    client.assert(response.status === 200, "Wrong response status");
+%}
+
 ### Get country by code
 GET http://localhost:8081/ms-one/countries/es
 Accept: application/json
@@ -15,9 +19,25 @@ GET http://localhost:8081/ms-one/countries?sortedBy=code
 Accept: application/json
 
 ### Get missing country by code
-GET http://localhost:8081/ms-one/countries/mc
+GET http://localhost:8081/ms-one/countries/zz
 Accept: application/json
+
+> {%
+    client.assert(response.status === 404, "Wrong response status");
+%}
 
 ### Get missing country by name
 GET http://localhost:8081/ms-one/countries?name=MissingCountry
 Accept: application/json
+
+> {%
+    client.assert(response.status === 404, "Wrong response status");
+%}
+
+### Get country by code
+GET http://localhost:8081/ms-one/countries/xyz
+Accept: application/json
+
+> {%
+    client.assert(response.status === 400, "Wrong response status");
+%}

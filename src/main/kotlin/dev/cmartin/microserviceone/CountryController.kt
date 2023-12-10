@@ -3,12 +3,12 @@ package dev.cmartin.microserviceone
 import dev.cmartin.microserviceone.CountryService.Companion.SortableProperties
 import dev.cmartin.microserviceone.Model.Country
 import dev.cmartin.microserviceone.Model.CountryNotFoundException
+import jakarta.validation.constraints.Pattern
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
-
 
 @RestController
 @RequestMapping("ms-one/countries")
@@ -63,7 +63,11 @@ class CountryController(private val countryService: CountryService) {
      * @return a Flux of Country objects
      */
     @GetMapping("/{code}")
-    fun getByCode(@PathVariable(required = true) code: String): Flux<Country> {
+    fun getByCode(
+        @PathVariable(required = true)
+        @Pattern(regexp = "[A-Za-z]{2}", message = "Must be 2-letter code")
+        code: String
+    ): Flux<Country> {
         return Flux.from(
             this.countryService
                 .findByCode(code)
