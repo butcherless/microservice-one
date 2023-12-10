@@ -1,19 +1,16 @@
 package dev.cmartin.microserviceone.integration
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import dev.cmartin.microserviceone.ApplicationUtils
+import dev.cmartin.microserviceone.Model.Country
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.springframework.core.io.ClassPathResource
 
 class ReadJsonFileTestIT {
 
-    data class Country(val code: String, val name: String)
 
-    fun readJsonFile(path: String): Map<String, String> {
+    private fun readJsonFile(path: String): Map<String, String> {
         val countries: List<Country> =
-            jacksonObjectMapper()
-                .readValue(ClassPathResource(path).inputStream)
+            ApplicationUtils.readJsonFile(path)
 
         return countries.associate { it.code to it.name }
     }
