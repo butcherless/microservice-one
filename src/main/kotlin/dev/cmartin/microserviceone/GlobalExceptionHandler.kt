@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.method.annotation.HandlerMethodValidationException
 import java.time.Instant
 
 @ControllerAdvice
@@ -21,6 +22,23 @@ class GlobalExceptionHandler {
 
         return ResponseEntity(errorResponse, HttpStatus.NOT_FOUND)
     }
+
+    @ExceptionHandler(HandlerMethodValidationException::class)
+    fun handleHandlerMethodValidationException(ex: HandlerMethodValidationException): ResponseEntity<ErrorResponse> {
+
+        val errorMessage = ex.allValidationResults
+            .flatMap { res ->
+                res.resolvableErrors
+                    .map { e -> "${res.argument}: ${e.defaultMessage}" }
+            }
+            .joinToString(", ")
+
+        return ResponseEntity(
+            ErrorResponse(errorMessage, Instant.now()),
+            HttpStatus.BAD_REQUEST
+        )
+    }
+
 
     companion object {
         private val logger: Logger = LoggerFactory.getLogger(CountryController::class.java)
