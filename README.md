@@ -21,7 +21,9 @@ Tech stack:
 
 Check _Java_ and _Maven_ versions:
 
-    ./mvnw -v
+```bash
+./mvnw -v
+```
 
 ```bash
 mkdir my-multi-module-project
@@ -34,16 +36,29 @@ mkdir -p src/{main,test}/{java,resources} src/main/java/dev/cmartin/learn
 
 Run the microservice:
 
-    java -jar target/microservice-one-0.0.1-SNAPSHOT.jar
+```bash
+java -jar target/microservice-one-0.0.1-SNAPSHOT.jar
+```
 
 Dependency list
 
-    ./mvnw dependency:list -DincludeGroupIds=org.springframework
-    ./mvnw dependency:list -DincludeGroupIds=org.jetbrains.kotlin
+```bash
+./mvnw dependency:list -DincludeGroupIds=org.springframework
+./mvnw dependency:list -DincludeGroupIds=org.jetbrains.kotlin
+```
 
 Dependency updates
 
-    ./mvnw versions:display-dependency-updates
+```bash
+./mvnw versions:display-dependency-updates
+```
+
+Plugin updates
+
+```bash
+./mvnw versions:display-plugin-updates
+```
+
 
 ## HTTP client commands [`httpie`]
 
