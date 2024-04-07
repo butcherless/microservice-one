@@ -1,3 +1,10 @@
+spring:
+  application:
+    name: "ms-one"
+  devtools:
+    restart:
+      enabled: true
+
 server:
   port: 8081
   servlet:
@@ -6,8 +13,9 @@ server:
 logging:
   level:
     root: info
-    org.springframework.boot: info
     dev.cmartin.microserviceone: debug
+    org.springframework.web.server.adapter: debug
+    org.springframework.boot: info
 
 management:
   endpoints:
@@ -18,10 +26,3 @@ management:
 service:
   countries:
     file: "countries.json"
-
-spring:
-  application:
-    name: "ms-one"
-  devtools:
-    restart:
-      enabled: true

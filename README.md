@@ -59,8 +59,11 @@ Plugin updates
 ./mvnw versions:display-plugin-updates
 ```
 
+## HTTP client commands [`httpie`, `curl`]
 
-## HTTP client commands [`httpie`]
+```bash
+curl -v http://localhost:8081/actuator/health | jq
+```
 
 | Command                                          | Description                                                     |
 |--------------------------------------------------|-----------------------------------------------------------------|

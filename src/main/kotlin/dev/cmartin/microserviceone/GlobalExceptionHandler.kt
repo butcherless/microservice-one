@@ -1,7 +1,5 @@
 package dev.cmartin.microserviceone
 
-import dev.cmartin.microserviceone.Model.CountryNotFoundException
-import dev.cmartin.microserviceone.Model.ErrorResponse
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
@@ -14,17 +12,16 @@ import java.time.Instant
 @ControllerAdvice
 class GlobalExceptionHandler {
 
-
-    @ExceptionHandler(CountryNotFoundException::class)
-    fun handleCountryNotFoundException(ex: CountryNotFoundException): ResponseEntity<ErrorResponse> {
+    @ExceptionHandler(Model.CountryNotFoundException::class)
+    fun handleCountryNotFoundException(ex: Model.CountryNotFoundException): ResponseEntity<Model.ErrorResponse> {
         logger.info("resource not found: ${ex.message}")
-        val errorResponse = ErrorResponse(ex.message, Instant.now())
+        val errorResponse = Model.ErrorResponse(ex.message, Instant.now())
 
         return ResponseEntity(errorResponse, HttpStatus.NOT_FOUND)
     }
 
     @ExceptionHandler(HandlerMethodValidationException::class)
-    fun handleHandlerMethodValidationException(ex: HandlerMethodValidationException): ResponseEntity<ErrorResponse> {
+    fun handleHandlerMethodValidationException(ex: HandlerMethodValidationException): ResponseEntity<Model.ErrorResponse> {
 
         val errorMessage = ex.allValidationResults
             .flatMap { res ->
@@ -34,7 +31,7 @@ class GlobalExceptionHandler {
             .joinToString(", ")
 
         return ResponseEntity(
-            ErrorResponse(errorMessage, Instant.now()),
+            Model.ErrorResponse(errorMessage, Instant.now()),
             HttpStatus.BAD_REQUEST
         )
     }

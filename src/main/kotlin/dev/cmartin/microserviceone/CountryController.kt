@@ -11,8 +11,10 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @RestController
-@RequestMapping("ms-one/countries")
-class CountryController(private val countryService: CountryService) {
+@RequestMapping("/countries")
+class CountryController(
+    private val countryService: CountryService
+) {
 
     /**
      * Gets a list of countries.
