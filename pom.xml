@@ -143,7 +143,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.4.0</version>
                 <configuration>
-                    <argLine>-XX:+EnableDynamicAgentLoading</argLine>
+                    <argLine>-XX:+EnableDynamicAgentLoading -Xshare:off</argLine>
                     <skipTests>${unit.test.skip}</skipTests>
                 </configuration>
             </plugin>
