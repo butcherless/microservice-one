@@ -23,7 +23,7 @@ class GlobalExceptionHandler {
     @ExceptionHandler(HandlerMethodValidationException::class)
     fun handleHandlerMethodValidationException(ex: HandlerMethodValidationException): ResponseEntity<Model.ErrorResponse> {
 
-        val errorMessage = ex.allValidationResults
+        val errorMessage = ex.valueResults
             .flatMap { res ->
                 res.resolvableErrors
                     .map { e -> "${res.argument}: ${e.defaultMessage}" }
