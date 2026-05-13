@@ -62,8 +62,19 @@ Plugin updates
 ## HTTP client commands [`httpie`, `curl`]
 
 ```bash
-curl -v http://localhost:8081/actuator/health | jq
+curl -v http://localhost:8081/ms-one/actuator/health | jq
 ```
+example response:
+```json
+{
+  "groups": [
+    "liveness",
+    "readiness"
+  ],
+  "status": "UP"
+}
+```
+
 
 | Command                                          | Description                                                     |
 |--------------------------------------------------|-----------------------------------------------------------------|
