@@ -20,6 +20,7 @@
     <properties>
         <java.version>25</java.version>
         <kotlin.version>2.4.0</kotlin.version>
+        <argLine/>
         <unit.test.skip>false</unit.test.skip>
     </properties>
 
@@ -143,7 +144,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.5.6</version>
                 <configuration>
-                    <argLine>-XX:+EnableDynamicAgentLoading -Xshare:off</argLine>
+                    <argLine>@{argLine} -XX:+EnableDynamicAgentLoading -Xshare:off</argLine>
                     <skipTests>${unit.test.skip}</skipTests>
                 </configuration>
             </plugin>
@@ -152,7 +153,7 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.5.6</version>
                 <configuration>
-                    <argLine>-XX:+EnableDynamicAgentLoading</argLine>
+                    <argLine>@{argLine} -XX:+EnableDynamicAgentLoading</argLine>
                 </configuration>
             </plugin>
 
@@ -170,7 +171,7 @@
                     </execution>
                     <execution>
                         <id>report</id>
-                        <phase>prepare-package</phase>
+                        <phase>verify</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
