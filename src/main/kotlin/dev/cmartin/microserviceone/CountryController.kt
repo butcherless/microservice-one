@@ -3,6 +3,8 @@ package dev.cmartin.microserviceone
 import dev.cmartin.microserviceone.CountryService.Companion.SortableProperties
 import dev.cmartin.microserviceone.Model.Country
 import dev.cmartin.microserviceone.Model.CountryNotFoundException
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.constraints.Pattern
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -12,6 +14,7 @@ import reactor.core.publisher.Mono
 
 @RestController
 @RequestMapping("/countries")
+@Tag(name = "country-controller", description = "Lookup and list countries")
 class CountryController(
     private val countryService: CountryService
 ) {
@@ -23,7 +26,8 @@ class CountryController(
      * @param name the name of the country to filter by (default is "")
      * @return a Flux of Country objects
      */
-    @GetMapping("", "/")
+    @Operation(description = "Lists up to 20 countries sorted by name or code, or looks up a single country by exact name")
+    @GetMapping("")
     fun getCountries(
         @RequestParam(defaultValue = "name") sortedBy: String,
         @RequestParam(defaultValue = "") name: String
@@ -64,6 +68,7 @@ class CountryController(
      * @param code the code of the country to filter by
      * @return a Flux of Country objects
      */
+    @Operation(description = "Looks up a single country by its two-letter code")
     @GetMapping("/{code}")
     fun getByCode(
         @PathVariable(required = true)
