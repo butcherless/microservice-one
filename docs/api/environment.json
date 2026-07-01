@@ -1,0 +1,19 @@
+{
+  "id": "47287835-d794-47d3-a3af-5594bae05166",
+  "name": "Microservice One — Local",
+  "values": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081/ms-one",
+      "type": "default",
+      "enabled": true
+    },
+    {
+      "key": "code",
+      "value": "",
+      "type": "default",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}
