@@ -20,6 +20,7 @@ class SecurityConfig {
                 authorize("/actuator/**", permitAll)
                 authorize("/swagger-ui/**", permitAll)
                 authorize("/v3/api-docs/**", permitAll)
+                authorize("/v3/api-docs.yaml", permitAll)
                 authorize("/countries/**", permitAll)
                 authorize(anyRequest, denyAll)
             }

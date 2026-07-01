@@ -1,0 +1,23 @@
+{
+  "skill_name": "validate-openapi",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "validate the openapi spec",
+      "expected_output": "Runs the full pipeline (mvnw package → start app → fetch generated YAML → stop app → Redocly → Spectral), then reports error/warning counts and either PASSED or a list of specific errors with file pointers.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I just added a new endpoint to CountryController — can you check the spec still passes?",
+      "expected_output": "Runs the full pipeline and confirms the spec is valid, or surfaces any Spectral/Redocly issues introduced by the new endpoint.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "does our api contract have any linting errors?",
+      "expected_output": "Runs the pipeline and reports Spectral + Redocly results, surfacing any errors with rule codes and JSON pointer locations.",
+      "files": []
+    }
+  ]
+}
