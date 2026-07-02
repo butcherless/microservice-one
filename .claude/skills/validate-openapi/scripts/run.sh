@@ -28,6 +28,9 @@ trap cleanup EXIT
 # ── 1. Stop ───────────────────────────────────────────────────────────────────
 echo "==> [1/6] Stopping any running instance..."
 pkill -f "target/microservice-one-.*\.jar" 2>/dev/null || true
+# Also free the port directly — catches instances started another way (e.g.
+# `./mvnw spring-boot:run`) that the jar-path pattern above won't match.
+lsof -ti:8081 | xargs kill 2>/dev/null || true
 sleep 1
 
 # ── 2. Build ──────────────────────────────────────────────────────────────────

@@ -84,10 +84,16 @@ on this first run — that's expected.
 ## Step 1 — Stop any running app instance
 
 The app is always started with `java -jar target/microservice-one-<version>.jar`, so the
-main class name never appears on the command line — match on the jar path instead:
+main class name never appears on the command line — match on the jar path instead. Also
+free port 8081 directly, in case something else is bound to it (e.g. an instance left
+running via `./mvnw spring-boot:run`, which the jar-path pattern won't match) — otherwise
+Step 3's server fails to bind and the health-check timeout misleadingly reads as "app
+failed to start" instead of "port in use":
 
 ```bash
 pkill -f "target/microservice-one-.*\.jar" 2>/dev/null || true
+lsof -ti:8081 | xargs kill 2>/dev/null || true
+sleep 1
 ```
 
 ---
